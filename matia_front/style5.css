@@ -1,0 +1,59 @@
+* {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+body {
+  background: #23195f;
+}
+
+button {
+  color: white;
+  background: #16057b;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+  border: 0;
+}
+
+.container img {
+  width: auto;
+  height: 141px;
+  align-items: center;
+  left: 35%;
+  margin-top: 5%;
+}
+.container {
+  position: absolute;
+  width: 502px;
+  height: 750px;
+  left: 30%;
+  top: 80px;
+  background: white;
+  border-radius: 5%;
+  scroll-behavior: smooth;
+}
+.container div {
+  padding: 5%;
+}
+
+.container div label {
+  margin-right: 30px;
+  top: 15%;
+}
+
+.feilds {
+  position: absolute;
+  width: 231px;
+  height: 44px;
+  left: 204px;
+  margin-left: 5px;
+  padding-left: 15px;
+  padding-top: 15px;
+
+  background: #c4c4c4;
+  border-radius: 10px;
+}

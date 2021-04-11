@@ -1,0 +1,106 @@
+* {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+
+nav {
+  position: relative;
+  background: rgb(22, 87, 87);
+  align-items: right;
+  padding: 0.5% 1%;
+  border-radius: 20px;
+}
+
+button {
+  width: auto;
+  height: auto;
+  padding: 8px;
+  background: rgba(149, 250, 238, 0.41);
+  border-radius: 10px;
+  border: 0;
+  color: #16057b;
+}
+
+.container {
+  position: fixed;
+  width: 400px;
+  height: 500px;
+  left: 18%;
+}
+
+.display {
+  position: absolute;
+  background: black;
+  color: white;
+  padding: 3%;
+}
+.forma {
+  margin-top: 1%;
+  position: inherit;
+  background: #52c9d0;
+  margin-right: 1%;
+  left: 55%;
+  padding: 3%;
+}
+.inputbox {
+  width: 300px;
+  height: 400px;
+  padding: 5%;
+  background: #ffffff;
+  border-radius: 16px;
+}
+.inputbox div {
+  padding: 1%;
+  margin: 10%;
+}
+.inputbox h1 {
+  width: auto;
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  color: #16057b;
+}
+
+.inputbox label {
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  color: #16057b;
+}
+
+.inputbox input {
+  line-height: 30px;
+  margin-top: 2%;
+  background: #d9f5f7;
+  border-radius: 10px;
+  outline: none;
+  border: 0;
+}
+
+.inputbox button {
+  position: absolute;
+  padding: 2%;
+  margin: 10%;
+  top: 52%;
+  text-align: center;
+  color: white;
+  background: #16057b;
+}
+
+.display h1 {
+  width: auto;
+  text-align: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.display p {
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
