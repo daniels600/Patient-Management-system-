@@ -6,28 +6,15 @@ require_once '../controllers/patientController.php';
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 
-    //creating an instance of Employee 
+    //creating an instance of Patient
     $patient = new Patient();
 
-    //storing the prisoner bio in a variable
+    //storing the patient bio in a variable
     $patientBio = $patient->DisplayPatientBio($id);
 
-    //getting prisoner case details
-    //$prisonerCaseInfo = $prisoner->getPrisonerCase($id);
-
-    //saving the case info in a variable
-    //$caseInfo = $prisoner->getCaseDetails($prisonerCaseInfo['Case_id']);
-
-    //getting the prisoner's image
+    //getting the patient's image
     $image = isset($patientBio['image'])? $patientBio['image'] : "";
     $imageSrc = "../". $image;
-
-    //policeOfficer ID
-    //$policeOfficerID =$patientBio['P_Officer_Id'];
-
-    //getting officer details
-    //$policeOfficerInfo = $patient->getOfficerDetails($policeOfficerID);
-
 
 }
 
@@ -72,7 +59,7 @@ if(isset($_GET['id'])){
               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Personal Details</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Medical Details</a>
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="./forms/medication.php?id=<?php echo $id; ?>" role="tab" aria-controls="profile" aria-selected="false">Add Medications report</a>
             </li>
           </ul>
         </div>

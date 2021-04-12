@@ -11,7 +11,7 @@ $db = new DB_connection();
 
 // a query to get the different sex and their population 
 $sql = "SELECT Sex,COUNT(*) as count 
-FROM Prisoner 
+FROM patients 
 GROUP BY Sex 
 ORDER BY count DESC";
 

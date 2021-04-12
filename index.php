@@ -1,120 +1,43 @@
-<?php
-require_once ('controllers/authController.php');
-
-// Creating an instance of authController
-$authControl = new authController();
-
-//an array to save the errors
-$response = [];
-
- if(isset($_POST['submit'])){
-    if($authControl->Login($_POST)){
-        header('Location: index.php?login=success');
-    }else{
-        $response['message'] = "Invalid Credentials";
-    }
- }
-
-//Checking for a login in the url 
-if(isset($_GET['login'])){
-    if($_GET['login'] = 'success'){
-        $msg = "Login Successful";
-    }
-}
-
-
-?>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>GPMS</title>
-    <link rel="icon" href="./assets/images/imageedit_28_3939584200.png" type="image/png">
-    <link href="./assets/css/styles.css" rel="stylesheet" />
-    <link href="./assets/css/parsley.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <script src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assets/css/matiaCss1.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+  <nav>
+      <a href="./index.php">HOME</a>
+      <a href="./views/userdata.php">SEARCH USER</a>
+  </nav>
 </head>
 
-<body class="bg-primary" style="background-image: url('./assets/images/larry-farr-BFJC05gzLXo-unsplash.jpg');height: 100%;  background-position: center;background-repeat: no-repeat;background-size: cover;">
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-5">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">Login</h3>
-                                </div>
-                                <!-- Showing a message if any -->
-                                <?php if(isset($response) && count($response) > 0): ?>
-                                    <div class= 'alert alert-danger'>
-                                        <?php echo '<li style="text-align:center">'. $response['message'] .'</li>'?>
-                                    </div>
-                                <?php endif; ?>
-                                <?php
-                                //Showing a message if any and redirect to the Dashboard after 1.5 secs
-                                if (isset($msg)) {
-                                    echo '<div class="alert alert-success">' .
-                                    '<li style="text-align:center">'.$msg.'</li>'
-                                    . '</div>';
-                                    echo "<script>setTimeout(\"location.href = 'Dashboard.php';\",1500);</script>";
-                                }
-
-                                ?>
-                               
-                               
-                                <div class="card-body">
-                                    <!-- Form validation with parsley js and regex -->
-                                    <form action='index.php' method='POST' class='login-form' data-parsley-validate>
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                            <input class="form-control py-4" id="inputEmailAddress" type="email" placeholder="Enter email address" name='admin_email' data-parsley-group="email_input" data-parsley-type="email" data-parsley-required="true" data-parsley-trigger="keyup" autofocus/>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="inputPassword">Password</label>
-                                            <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" name='admin_password' data-parsley-group="password_input" data-parsley-length="[4, 20]" data-parsley-required="true" data-parsley-trigger="keyup" />
-                                        </div>
-                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="./views/password.php">Reset Password?</a>
-                                            <input class="btn btn-primary" name="submit" type="submit" value="Login">
-                                        </div>
-                                        <div class="invalid-form-error-message"></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
+<body>
+  <div class="rectangle1">
+    <div class="ellipse1">
+      <div class="rectangle2">
+        <div class="ellipse2">
+          <img id="img12" src="https://i.pinimg.com/564x/44/37/8c/44378caed6172cbbd2f58fbcbf56a07e.jpg">
         </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SE Team 2021</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
+      </div>
     </div>
+  </div>
+  </div>
+  </div>
+  <div class="main-content">
+    <h1 id="heading">Your Medical Patner in the fight against &nbsp; COVID-19</h1>
+    <p id="subphrase">The mask you wear says determines whether or not you are going to be infected with COVID-19.
+      For more COVID-19 related information, click the button below</p>
+    <a href="./views/login.php"><button id="consult">Admin Login</button></a>
+  </div>
+  <div class="footer">
+    <img id="img1" src="https://i.pinimg.com/236x/e0/d0/e8/e0d0e82c3378d936488173652316d60a.jpg">
+    <p id="p1">This website and its services are approved by the Ministry of Health and the Ghana Health Service</p>
+    <p id="p2">Copyright 2021</p>
+    <img id="img2" src="https://i.pinimg.com/236x/fd/1f/9f/fd1f9f563e3f767628f3498f6beb69a2.jpg">
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"> </script>
+  </div>
 </body>
 
 </html>

@@ -34,7 +34,6 @@ $employees = $employeeObj->Display_All_Employees();
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Medico</title>
-    <link rel="icon" href="../assets/images/imageedit_28_3939584200.png" type="image/png">
     <link href="../assets/css/styles.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -48,7 +47,6 @@ $employees = $employeeObj->Display_All_Employees();
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <img src="../assets/images/Medico_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         <a class="navbar-brand" href="index.html">Medico</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
          <!-- Navbar Search-->
@@ -62,9 +60,9 @@ $employees = $employeeObj->Display_All_Employees();
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="./password.php">Reset Password</a>
+                    <a class="dropdown-item" href="password.php">Reset Password</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="../Dashboard.php?logout">Logout</a>
+                    <a class="dropdown-item" href="Dashboard.php?logout">Logout</a>
                 </div>
             </li>
         </ul>

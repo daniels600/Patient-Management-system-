@@ -56,7 +56,7 @@ class Patient
         $dst1 = "patientImages/" . $tm . $image_name;
         $image_type = $_FILES['image']['type']; // getting the type to check if it is an image
         
-
+        //$otp = rand(100000, 999999);
 
         // checking file upload if it is an image
         if (
@@ -88,28 +88,11 @@ class Patient
 
         //checking the execution of the query statement
         if ($stmt->execute()) {
-            //getting the last inserted data idatient = mysqli_insert_id($db->conn);
-
-            // $_SESSION['prisonerIatient;atient = isset($_SESSION['prisonerId']) ? $_SESSION['prisonerId'] : $this->getPrisonerID();
-
+        
             $response['message'] = "Success";
-            //$caseId = isset($_SESSION['caseId']) ? $_SESSION['caseId'] : $this->getCaseID();
-
-            //query to insert into the prisoner_case table
-            //$query = "INSERT INTO Prisoner_case(Case_id,Prisoner_id,Latest_Possible_Date)
-            //VALUES('$caseatient','$release_date')";
-
+        
             return true;
 
-            // $result=0;
-
-            // if ($result) {
-            //     return true;
-                
-            // } else {
-            //     $response['message'] = "Failed";
-            //     return false;
-            // }
         } else {
             return false;
 
@@ -119,114 +102,6 @@ class Patient
 
 
 
-    //A method to insert the case details
-    public function insertCaseForm($post)
-    {
-        // session_start();
-        $errors = [];
-
-        //creating an instance of db_connection 
-        $db = new DB_connection();
-
-        //getting the post data from the form and checking
-        $magFname = $db->connect()->real_escape_string($_POST['mFname']);
-        $magLname = $db->connect()->real_escape_string($_POST['mLname']);
-        $court = $db->connect()->real_escape_string($_POST['court']);
-        $crime = $db->connect()->real_escape_string($_POST['crime']);
-        $catOffence = $db->connect()->real_escape_string($_POST['CatOffence']);
-        $caseStartDate = $db->connect()->real_escape_string($_POST['case_start_date']);
-        $caseEndDate = $db->connect()->real_escape_string($_POST['case_end_date']);
-        $crimeTime = $db->connect()->real_escape_string($_POST['crimeTime']);
-        $dateCrime = $db->connect()->real_escape_string($_POST['crimeDate']);
-        $sentence = $db->connect()->real_escape_string($_POST['sentenceLength']);
-
-        //Validating the case details submitted 
-        if(!preg_match("/^[a-zA-Z ]*$/", $magFname) && !preg_match("/^[a-zA-Z ]*$/", $magLname) && !preg_match("/^[a-zA-Z ]*$/", $court) && !preg_match("/^[a-zA-Z ]*$/", $crime) && !preg_match("/^[a-zA-Z ]*$/", $catOffence) && !preg_match("/^[0-9]*$/", $sentence)){
-            $response['message'] = "Failed";
-        }
-        else{
-            //  A query to insert a new case 
-            $sql = "INSERT into Cases(case_start_date,case_end_date,crime_committed,Category_of_Offence,Crime_time,Crime_date, sentence_length_Years,Court_of_commital,Magistrate_fname,Magistrate_lname) 
-            VALUES(?,?,?,?,?,?,?,?,?,?)";
-
-            $stmt = $db->connect()->prepare($sql);
-            $stmt->bind_param('ssssssdsss', $caseStartDate, $caseEndDate, $crime, $catOffence, $crimeTime, $dateCrime, $sentence, $court, $magFname, $magLname);
-
-
-            if ($stmt->execute()) {
-
-                $caseId = mysqli_insert_id($db->conn);
-
-                //setting the caseId
-                //$this->setCaseID($caseId);
-
-                //Having a session for the caseId
-                $_SESSION['caseId'] = $caseId;
-                $response['message'] = "Success";
-
-                // redirect if the case record was inserted successfully
-                header('Location: ../views/forms/caseForm.php?message=success');
-            } else {
-                $response['message'] = "Failed";
-            }
-
-            //$stmt->close();
-            echo json_encode($response);
-            $stmt->close();
-        }
-
-    }
-
-
-    public function insertPoliceOfficer($postdata)
-    {
-        session_start();
-
-        //creating an instance of db_connection 
-        $db = new DB_connection();
-
-        //getting the post data from the form and checking
-        $officerFname = $db->connect()->real_escape_string($_POST['pFname']);
-        $officerLname = $db->connect()->real_escape_string($_POST['pLname']);
-        $serviceId = $db->connect()->real_escape_string($_POST['serviceId']);
-        $officerContact = $db->connect()->real_escape_string($_POST['pContact']);
-        $stationContact = $db->connect()->real_escape_string($_POST['stationContact']);
-        $ranks = $db->connect()->real_escape_string($_POST['ranks']);
-        $stationName = $db->connect()->real_escape_string($_POST['stationName']);
-
-        //Validating the police officer details submitted using regex
-        if(!preg_match("/^[a-zA-Z ]*$/",  $officerFname) && !preg_match("/^[a-zA-Z ]*$/", $officerLname) && !preg_match("/^[a-zA-Z0-9 ]*$/", $serviceId) && !preg_match("/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/", $officerContact) && !preg_match("/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/", $stationContact) && !preg_match("/^[0-9]*$/", $stationName)){
-            $response['message'] = "Failed";
-        } else{
-            // A query to insert a new policeOfficer record 
-            $sql = "INSERT INTO Police_Officer(Service_ID, P_fname, P_lname,Ranks, Officer_contact,Police_Station,Station_Tel)
-            VALUES(?,?,?,?,?,?,?)";
-
-            $stmt = $db->connect()->prepare($sql);
-            $stmt->bind_param('sssssss', $serviceId, $officerFname, $officerLname, $ranks, $officerContact, $stationName, $stationContact);
-
-
-            // checking if query was a success
-            if ($stmt->execute()) {
-                $response['message'] = "Success";
-
-                //Getting the last inserted policeOfficer data
-                $policeOfficerId = mysqli_insert_id($db->conn);
-
-                //$this->setPoliceOfficerID($policeOfficerId);
-
-                $_SESSION['policeOfficeId'] =  $policeOfficerId;
-
-                header('Location: ../views/forms/policeOfficerForm.php?message=success');
-
-            } else {
-                $response['message'] = "Failed";
-                echo ("The error is " . mysqli_error($db->connect()));
-            }
-            // echo json_encode($response);
-            $stmt->close();
-        }
-    }
 
 
     public function Display_All_Patients()
@@ -284,63 +159,10 @@ class Patient
         }
     }
 
-    //A method to get the prisoner Case details 
-    public function getPrisonerCase($id)
-    {
-        //creating an instance of db_connection 
-        $db = new DB_connection();
+    
 
-        $sql2 = "SELECT * from Prisoner_case where Prisoner_id = '$id'";
+   
 
-        $record =  $db->connect()->query($sql2);
-
-        //checking if the query affected any row then is a success
-        if ($record->num_rows > 0) {
-            $row = $record->fetch_assoc();
-            return $row;
-        } else {
-            echo "Record not found";
-        }
-    }
-
-    //A method to get the Case Info details
-    public function getCaseDetails($idCase)
-    {
-        //creating an instance of db_connection 
-        $db = new DB_connection();
-
-        // A query to get a specific case information
-        $sql3 = "SELECT * from Cases where Case_id = '$idCase'";
-        $case_record =   $db->connect()->query($sql3);
-
-
-        //checking if the query affected any row then is a success
-        if ($case_record->num_rows > 0) {
-            $row = $case_record->fetch_assoc();
-            return $row;
-        } else {
-            echo "Record not found";
-        }
-    }
-
-    //A method to get the PoliceOfficer details
-    public function getOfficerDetails($id)
-    {
-        //creating an instance of db_connection 
-        $db = new DB_connection();
-
-        $sql4 = "SELECT * from Police_Officer where P_Officer_Id = '$id'";
-        $officerRecords = $db->connect()->query($sql4);
-
-
-        //checking if the query affected any row then is a success
-        if ($officerRecords->num_rows > 0) {
-            $row = $officerRecords->fetch_assoc();
-            return $row;
-        } else {
-            echo "Record not found";
-        }
-    }
 
 
     //a method to update the prisoner Information
@@ -383,21 +205,29 @@ class Patient
         }
     }
 
-
-    //A method to delete a prisoner from the Database 
-    public function deletePrisoner($id)
-    {
-        //creating an instance of db_connection 
+    public function insert_medication($post) {
+         //creating an instance of db_connection 
         $db = new DB_connection();
 
-        // a query to delete the prisoner record
-        $sql = "DELETE FROM Prisoner WHERE Prisoner_id='$id'";
+        $pat_id = $db->connect()->real_escape_string($_POST['patient_id']);
+        $allergies = $db->connect()->real_escape_string($_POST['allergies']);
+        $asthma = $db->connect()->real_escape_string($_POST['asthma']);
+        $stds = $db->connect()->real_escape_string($_POST['stds']);
+        $diagnosis = $db->connect()->real_escape_string($_POST['diagnosis']);
+        
 
-        //checking if the query is successful
-        if ($db->connect()->query($sql)) {
-            return true; 
+        $sql = "INSERT INTO medical_report(patientid, Asthma, STD, Allergies, diagnosis) 
+        VALUES('$pat_id', '$asthma', '$stds', '$allergies', '$diagnosis')";
+
+
+        //Executing the query
+        $result = $db->connect()->query($sql);
+
+        if($result){
+            return true;
         }else{
             return false;
         }
     }
+
 }

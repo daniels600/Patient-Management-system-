@@ -3,7 +3,7 @@
 session_start();
  
 // Include config file
-include_once ("config/db_conn.php");
+include_once ("../config/db_conn.php");
 
 //uncomment this for PHPUnit Testing
 // include_once ("C:/xampp/htdocs/final-daniels600/config/db_conn.php");
@@ -19,8 +19,8 @@ class authController{
         $admin_password = $db->connect()->real_escape_string($_POST['admin_password']);
 
         //Kindly uncomment for PHPUnit Testing of the Login
-        // $admin_email = 'admin@gov.com';
-        // $admin_password = 'password123';
+        //$admin_email = 'admin@gov.com';
+        //$admin_password = 'password123';
 
         //Validating login if not empty and email is correct 
         if(!empty($admin_email) && !empty($admin_password) && !filter_var($admin_email, FILTER_VALIDATE_EMAIL)){
@@ -84,7 +84,7 @@ if(isset($_GET['logout'])){
     unset($_SESSION['admin_email']);
     
     //redirect admin to the login page
-    header('Location: index.php');
+    header('Location: ../index.php');
     // exit();
 } 
 

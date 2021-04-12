@@ -12,32 +12,6 @@ $patientObj = new Patient();
 $db = new DB_connection();
 
 
-// //A query to get the total number of prisoners who are remands
-// $countR = "SELECT * FROM Prisoner WHERE Prisoner_status= 'Remand'";
-
-// //A query to get the total number of prisoners who are convict
-// $countC =  "SELECT * FROM Prisoner WHERE Prisoner_status= 'Convict'";
-
-// //A query to get the prison with the highest capacity
-// $countCapa = "SELECT Prison_name, COUNT(*) AS magnitude FROM Prisoner GROUP BY Prison_name 
-//                     ORDER BY magnitude DESC
-//                     LIMIT 1";
-
-// //A query to get all prisoners
-// $countPC= "SELECT * FROM Prisoner";
-
-// //Executing the query
-// $countRemand = $db->connect()->query($countR);
-
-// //Executing the query
-// $countConvict = $db->connect()->query($countC);
-
-// //Executing the query
-// $countCapacity = $db->connect()->query($countCapa);
-
-// //Executing the query
-// $countPrisoners = $db->connect()->query($countPC);
-
 $patients = $patientObj->Display_All_Patients();
 
 ?>
@@ -52,8 +26,6 @@ $patients = $patientObj->Display_All_Patients();
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Medico_PMS</title>
-    <link rel="icon" href="
-    ../assets/images/imageedit_28_3939584200.png" type="image/png">
     <link href="../assets/css/styles.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -67,7 +39,6 @@ $patients = $patientObj->Display_All_Patients();
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <img src="../assets/images/Medico_PMS_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         <a class="navbar-brand" href="index.html">Medico_PMS</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
          <!-- Navbar Search-->
@@ -81,9 +52,9 @@ $patients = $patientObj->Display_All_Patients();
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="./password.php">Reset Password</a>
+                    <a class="dropdown-item" href="password.php">Reset Password</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="../Dashboard.php?logout">Logout</a>
+                    <a class="dropdown-item" href="Dashboard.php?logout">Logout</a>
                 </div>
             </li>
         </ul>
@@ -126,106 +97,13 @@ $patients = $patientObj->Display_All_Patients();
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                     <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total # of Remands</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <p ></p></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Total # of Convicts</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><p ></p></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Highest capacity prison
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></p></div>
-                                                </div>
-                                                <!-- <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="fas fa-container-storage bg-info" style="width: 50%"></div>
-                                                    </div>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-warehouse fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            Total # Inmate(s)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><p ></p></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-xl-6">
+                        <div class="col-xl-8">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar mr-1"f></i>
                                     Gender Population
                                 </div>
                                 <div class="card-body"><canvas id="myBarChart2" width="100%" height="60"></canvas></div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-bar mr-1"></i>
-                                    Prison Population
-                                </div>
-                                <div class="card-body"><canvas id="myBarChart1" width="100%" height="60"></canvas></div>
                             </div>
                         </div>
                     </div>
@@ -243,6 +121,7 @@ $patients = $patientObj->Display_All_Patients();
                                     
                                     <thead>
                                         <tr>
+                                            <th>P. ID</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>BMI</th>
@@ -254,6 +133,7 @@ $patients = $patientObj->Display_All_Patients();
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>P. ID</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>BMI</th>
@@ -272,6 +152,7 @@ $patients = $patientObj->Display_All_Patients();
                                         <?php
                                             echo'
                                             <tr>
+                                                <td>'.$patient['patientid'].'</td>
                                                 <td>'.$patient['firstname'].'</td>
                                                 <td>'.$patient['lastname'].'</td>
                                                 <td>'.$patient['BMI'].'</td>
@@ -332,59 +213,8 @@ https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" crossorigin=
     
     <script>
     $(document).ready(function () {
-            showGraph1();
             showGraph2();
         });
-
-        // A function to display the graph of prisons and their population
-        function showGraph1()
-        {
-            {
-                $.post("../sql/prison_data.php",
-                function (data)
-                {
-                    console.log(data);
-                     var prison_name = [];
-                    var count = [];
-
-                    for (var i in data) {
-                        prison_name.push(data[i].Prison_name);
-                        count.push(data[i].count);
-                    }
-
-                    var chartdata = {
-                        labels: prison_name,
-                        datasets: [
-                            {
-                                label: 'Prisons population',
-                                backgroundColor: ['#0d47a1', '#FF8800', "#1b5e20", '#CC0000', '#007E33','#9933CC'],
-                                borderColor: '#46d5f1',
-                                hoverBackgroundColor: '#CCCCCC',
-                                hoverBorderColor: '#666666',
-                                data: count
-                            }
-                        ]
-                    };
-
-                    var graphTarget = $("#myBarChart1");
-
-                    var barGraph = new Chart(graphTarget, {
-                        type: 'bar',
-                        data: chartdata,
-                        options: {
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true,
-                                        stepSize: 1
-                                    }
-                                }]
-                            }
-                        }
-                    });
-                });
-            }
-        }
 
         // a function to display a graph of the different sex and their population
         function showGraph2()
