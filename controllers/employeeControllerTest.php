@@ -33,7 +33,7 @@ final class employeeControllerTest extends TestCase
     public function testDisplayEmployee(): void
     {
         $employee = new Employee(); 
-        $id=3;      
+        $id=1;      
         $this->assertIsArray(
             $employee->DisplayEmployee($id)
         );
@@ -44,7 +44,7 @@ final class employeeControllerTest extends TestCase
     public function testDeleteEmployee(): void
     {
         $employee = new Employee(); 
-        $id=3;      
+        $id=1;      
         $this->assertTrue(
             $employee->DeleteEmployee($id)
         );

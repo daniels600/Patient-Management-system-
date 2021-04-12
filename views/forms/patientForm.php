@@ -143,7 +143,7 @@
                                         <div class="form-group">
                                             <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
                                             <p><label class="btn btn-primary"for="file" style="cursor: pointer;">Upload Image</label></p>
-                                            <p><img id="output" width="200" name="image"/></p>
+                                            <p><img id="output" width="200" name="image_preview"/></p>
                                            
                                         </div>
                                         <?php if(isset($_GET['error'])){if($_GET['error'] == 'wrongImage') {echo "Upload a *jpeg  *gif *png *jpg";}}?>

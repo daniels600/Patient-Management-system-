@@ -10,20 +10,20 @@ class Patient
     //Creating properties
     private $patientID;
 
-    // PrisonerID getter function
-    public function getPrisonerID()
+    // patientID getter function
+    public function getpatientID()
     {
         return $this->patientID;
     }
 
-    //PrisonerID setter function
+    //patientID setter function
     public function setPatientID($patientID)
     {
         $this->patientID;
     }
 
 
-    //A method to insert prisoner details 
+    //A method to insert patient details 
     public function insert_patient($post)
     {
         session_start();
@@ -50,7 +50,7 @@ class Patient
         $bloodType = $db->connect()->real_escape_string($_POST['bloodType']);
         $BMI = $db->connect()->real_escape_string($_POST['BMI']);
         $healthID = $db->connect()->real_escape_string($_POST['healthID']);
- 
+    
         $image_name = $_FILES['image']['name'];
         $dst = "../patientImages/" . $tm . $image_name;
         $dst1 = "patientImages/" . $tm . $image_name;
@@ -76,8 +76,8 @@ class Patient
             }
         }
 
-       
-        //A query to insert a new prisoner
+        
+        //A query to insert a new patient
         $sql = "INSERT INTO patients(firstname, lastname, Height, Weight, Marital_Status, Nationality, Sex, DOB, patient_tel, healthID, BMI, bloodtype, address_street, address_city, address_region, address_postal_code, image) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         ;
 
@@ -99,17 +99,14 @@ class Patient
         }
     
     }
-
-
-
-
+    
 
     public function Display_All_Patients()
     {
         //creating an instance of db_connection 
         $db = new DB_connection();
 
-        //A query to get all prisoners details
+        //A query to get all patients details
 
         $sql = "SELECT patientid, firstname, lastname,
         BMI,
@@ -138,13 +135,13 @@ class Patient
         }
     }
 
-    //A method to display a prisoner Detail
+    //A method to display a patient's Detail
     public function DisplayPatientBio($id)
     {
         //creating an instance of db_connection 
         $db = new DB_connection();
 
-        //A query to select a specific prisoner by his/her ID
+        //A query to select a specific patient by his/her ID
         $sql1 = "SELECT * from patients where patientid = '$id'";
 
         //Executing the query
@@ -165,7 +162,7 @@ class Patient
 
 
 
-    //a method to update the prisoner Information
+    //a method to update the patient Information
     public function updatePatientInfo($id)
     {
         //creating an instance of db_connection 
@@ -193,7 +190,7 @@ class Patient
 
 
 
-        //A query to update the prisoner information 
+        //A query to update the patient information 
         $updatePatient = $db->connect()->query(" UPDATE patients SET firstname='$fname', lastname='$lname', Height='$Height_feets', Weight='$Weight_kg', Sex='$Sex', DOB='$dob',
         healthID='$HealthID', BMI='$BMI', bloodtype='$bloodType', patient_tel='$Patient_tel', address_street='$address_street', address_city='$address_city',
         address_region='$address_region', address_postal_code='$address_postal_code', Marital_Status='$Marital_Status' WHERE patientid= '$idUpdate' ");

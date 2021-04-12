@@ -16,7 +16,6 @@ class Employee {
         $empFname = $db->connect()->real_escape_string($_POST['fname']);
         $empLname = $db->connect()->real_escape_string( $_POST['lname']);
         $nationality = $db->connect()->real_escape_string( $_POST['nationality']);
-        $prison = $db->connect()->real_escape_string( $_POST['prison']);
         $Dept = $db->connect()->real_escape_string($_POST['dept_name']);
         $salary = $db->connect()->real_escape_string( $_POST['salary']);
         $dob = $db->connect()->real_escape_string($_POST['dob']);
@@ -59,21 +58,25 @@ class Employee {
         VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         //Checking with Regex if input doesn't have a match 
-    
-        $stmt =  $db->connect()->prepare($sql);
-        $stmt->bind_param('sssssssssssdssssss', $empFname ,$empLname,$Dept,$nationality,$DOC,$email,$telephone,$role,$sex,$marital_status,$edu,$salary,$dob,$ssn,$streetAddress,$city,$state, $postcode);
-
-        if($stmt->execute()){
-            $response['message'] = "Success";
-            return true;
-
-        } else {
+        if(!preg_match("/^[a-zA-Z ]*$/",  $empFname) && !preg_match("/^[a-zA-Z ]*$/", $empLname) && !preg_match("/^[a-zA-Z ]*$/", $nationality) && !preg_match("/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/", $telephone) && !preg_match("/^[a-zA-Z ]*$/", $role) && !preg_match("/^[a-zA-Z ]*$/", $edu) && !preg_match("/^[a-zA-Z ]*$/", $marital_status) && !preg_match("/^[ A-Za-z0-9 _.,\/+-]*$/", $postcode)){
             $response['message'] = "Failed";
             return false;
-        }
-            //close statement
-            $stmt->close();
+        }else{
+            $stmt =  $db->connect()->prepare($sql);
 
+            $stmt->bind_param('sssssssssssdssssss', $empFname ,$empLname,$Dept,$nationality,$DOC,$email,$telephone,$role,$sex,$marital_status,$edu,$salary,$dob,$ssn,$streetAddress,$city,$state, $postcode);
+
+                if($stmt->execute()){
+                    $response['message'] = "Success";
+                    return true;
+
+                } else {
+                    $response['message'] = "Failed";
+                    return false;
+                }
+                //close statement
+                $stmt->close();
+            }
 
         }
 
@@ -227,11 +230,6 @@ class Employee {
             }
             
         }
-
-
-
-
-
 
 
 }
