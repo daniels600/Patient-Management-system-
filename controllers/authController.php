@@ -19,8 +19,8 @@ class authController{
         $admin_password = $db->connect()->real_escape_string($_POST['admin_password']);
 
         //Kindly uncomment for PHPUnit Testing of the Login
-        //$admin_email = 'admin@gov.com';
-        //$admin_password = 'password123';
+        // $admin_email = 'admin@gov.com';
+        // $admin_password = 'password123';
 
         //Validating login if not empty and email is correct 
         if(!empty($admin_email) && !empty($admin_password) && !filter_var($admin_email, FILTER_VALIDATE_EMAIL)){
